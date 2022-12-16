@@ -4,13 +4,13 @@ namespace Fagforbundet\AntiVirusApiClientBundle\Entity\Response;
 
 final class FileScanResponse {
   private FileScanResult $result;
-  private ?string $fileName;
+  private string $fileName;
   private ?string $virusName;
 
   /**
    * FileScanResponse constructor.
    */
-  public function __construct(FileScanResult $result, ?string $fileName = null, ?string $virusName = null) {
+  public function __construct(FileScanResult $result, string $fileName, ?string $virusName = null) {
     $this->result = $result;
     $this->fileName = $fileName;
     $this->virusName = $virusName;
@@ -22,7 +22,7 @@ final class FileScanResponse {
    * @return static
    */
   public static function createFromResponseArray(array $responseArray): self {
-    return new self(FileScanResult::from($responseArray['result']), $responseArray['fileName'] ?? null, $responseArray['virusName'] ?? null);
+    return new self(FileScanResult::from($responseArray['result']), $responseArray['fileName'], $responseArray['virusName'] ?? null);
   }
 
   /**
