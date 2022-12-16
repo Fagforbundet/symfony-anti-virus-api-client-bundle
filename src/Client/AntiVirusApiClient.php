@@ -36,7 +36,7 @@ final class AntiVirusApiClient implements AntiVirusApiClientInterface {
   /**
    * @inheritDoc
    */
-  public function scan($file, ?string $filename = null): FileScanResponse {
+  public function scan(mixed $file, ?string $filename = null): FileScanResponse {
     if (!is_resource($file) && !\is_string($file) && !$file instanceof File) {
       throw new \InvalidArgumentException(\sprintf('$file is not a resource, string or "%s". It is "%s"', File::class, \get_debug_type($file)));
     }
