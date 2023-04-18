@@ -1,0 +1,13 @@
+services:
+  fagforbundet.anti_virus_api.bearer_token_service:
+    class: Fagforbundet\AntiVirusApiClientBundle\Service\BearerTokenService
+    arguments:
+      $openIdProviderService: !abstract defined in extension
+
+  fagforbundet.anti_virus_api.client:
+    class: Fagforbundet\AntiVirusApiClientBundle\Client\AntiVirusApiClient
+    arguments:
+      $client: !abstract defined in extension
+      $bearerTokenService: '@fagforbundet.anti_virus_api.bearer_token_service'
+
+  Fagforbundet\AntiVirusApiClientBundle\Client\AntiVirusApiClientInterface: '@fagforbundet.anti_virus_api.client'
