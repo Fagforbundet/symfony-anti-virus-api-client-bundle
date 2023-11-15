@@ -31,8 +31,12 @@ class FagforbundetAntiVirusApiClientExtension extends ConfigurableExtension impl
     $container->getDefinition(self::BEARER_TOKEN_SERVICE_ID)
       ->setArgument('$openIdProviderService', new Reference($mergedConfig['oidc_client']));
 
-    $container->getDefinition(self::ANTI_VIRUS_API_CLIENT_SERVICE_ID)
+    $client = $container->getDefinition(self::ANTI_VIRUS_API_CLIENT_SERVICE_ID)
       ->setArgument('$client', new Reference(self::ANTI_VIRUS_API_HTTP_CLIENT_SERVICE_ID));
+
+    if ($mergedConfig['cache']) {
+      $client->setArgument('$cache', new Reference($mergedConfig['cache']));
+    }
   }
 
   /**
