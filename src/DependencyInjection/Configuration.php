@@ -19,6 +19,7 @@ class Configuration implements ConfigurationInterface {
         ->children()
           ->scalarNode('oidc_client')->defaultNull()->end()
           ->scalarNode('base_url')->defaultValue('https://api.antivirus.fagforbundet.no')->end()
+          ->scalarNode('cache')->defaultNull()->end()
         ->end()
       ->end();
 
