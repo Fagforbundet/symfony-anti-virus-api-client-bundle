@@ -53,7 +53,7 @@ final class BearerTokenService implements BearerTokenServiceInterface {
       throw new \LogicException(sprintf('$accessToken is not instance of %s', OidcRawTokenInterface::class));
     }
 
-    $item->expiresAfter(\max($accessToken->getExp() - 300, 0));
+    $item->expiresAfter(\max($accessToken->getExp() - time() - 300, 0));
 
     return $accessToken->getRawToken();
   }
